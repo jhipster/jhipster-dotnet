@@ -1,0 +1,205 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Templates\Blazor\BlazorWebClient\Model\WeatherForecast.cs" />
+    <Compile Remove="Templates\Blazor\BlazorWebClient\Program.cs" />
+    <Compile Remove="Templates\Blazor\Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\Api\WebApi\WebApi.csproj.mustache" />
+    <None Remove="Templates\Blazor\App.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Pages\Counter.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Pages\FetchData.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Pages\Index.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Properties\launchSettings.json.mustache" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Shared\MainLayout.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Shared\MainLayout.razor.css" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Shared\NavMenu.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Shared\NavMenu.razor.css" />
+    <None Remove="Templates\Blazor\BlazorWebClient\Shared\SurveyPrompt.razor" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\app.css" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\bootstrap\bootstrap.min.css" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\bootstrap\bootstrap.min.css.map" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\FONT-LICENSE" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.eot" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.otf" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.woff" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\ICON-LICENSE" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\README.md" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\favicon.ico" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\icon-192.png" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\index.html" />
+    <None Remove="Templates\Blazor\BlazorWebClient\wwwroot\sample-data\weather.json" />
+    <None Remove="Templates\Blazor\_Imports.razor" />
+    <None Remove="Templates\Sonar\SonarQube.Analysis.xml" />
+    <None Remove="Templates\Api\WebApi\.editorconfig" />
+    <None Remove="Templates\Api\WebApi\appsettings.Development.json.mustache" />
+    <None Remove="Templates\Api\WebApi\appsettings.json.mustache" />
+    <None Remove="Templates\Api\WebApi\Controllers\WeatherForecastController.cs.mustache" />
+    <None Remove="Templates\GithubAction\.github\workflows\dotnet.yml" />
+    <None Remove="Templates\Api\WebApi\Program.cs.mustache" />
+    <None Remove="Templates\Api\WebApi\Properties\launchSettings.json.mustache" />
+    <None Remove="Templates\Api\WebApi\WeatherForecast.cs.mustache" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\Blazor\BlazorWebClient\App.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\BlazorGeneration.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Model\WeatherForecast.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Pages\Counter.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Pages\FetchData.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Pages\Index.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Program.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Properties\launchSettings.json.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Shared\MainLayout.razor.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Shared\MainLayout.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Shared\NavMenu.razor.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Shared\NavMenu.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\Shared\SurveyPrompt.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\app.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\bootstrap\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\bootstrap\bootstrap.min.css.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\FONT-LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\font\fonts\open-iconic.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\ICON-LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\css\open-iconic\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\icon-192.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\wwwroot\sample-data\weather.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Blazor\BlazorWebClient\_Imports.razor">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\Sonar\SonarQube.Analysis.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\.editorconfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\appsettings.Development.json.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\appsettings.json.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\Controllers\WeatherForecastController.cs.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\GithubAction\.github\workflows\dotnet.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\Program.cs.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\WebApi.csproj.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\Properties\launchSettings.json.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Api\WebApi\WeatherForecast.cs.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Handlebars.Net" Version="2.1.1" />
+    <PackageReference Include="Handlebars.Net.Helpers.Humanizer" Version="2.3.4" />
+    <PackageReference Include="Handlebars.Net.Helpers.Json" Version="2.3.4" />
+    <PackageReference Include="Humanizer" Version="2.14.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JHipster.NetLite.Domain\JHipster.NetLite.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\Init\Readme.md.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\Init\Readme.md.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

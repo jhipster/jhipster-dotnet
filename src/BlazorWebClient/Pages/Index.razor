@@ -1,0 +1,248 @@
+﻿@page "/"
+@using BlazorWebClient.Data
+@using BlazorWebClient.Data.Consts
+@using BlazorWebClient.Data.Consts.RenderSelection
+@using BlazorWebClient.Services.Api
+@using BlazorWebClient.Services.GithubAction
+@using BlazorWebClient.Services.Init
+@using BlazorWebClient.Services.Interfaces
+@using BlazorWebClient.Services.Sonar
+@using JHipster.NetLite.Domain.Entities
+@using System.Collections
+@inject IInitService initService
+@inject IApiService apiService
+@inject IGithubActionService githubActionService
+@inject ISonarService sonarService
+@inject IBlazorService blazorService
+
+<PageTitle>Index</PageTitle>
+
+<div class="row d-flex">
+        <EditForm Model="projectForm" OnValidSubmit="ValideForm" class="d-flex col-12">
+            <div class="div-form col-4 p-3">
+            <DataAnnotationsValidator />
+	        <ValidationSummary />
+                <div class="mb-3 d-flex flex-column">
+                    <label>Folder (required) : </label>
+		            <InputText id="folder" @bind-Value="projectForm.Folder" placeholder="Enter destination folder's path"></InputText>
+	            </div>
+	            <div class="mb-3 d-flex flex-column">
+                     <label>ProjectName : </label>
+		            <InputText id="projectname" @bind-Value="projectForm.ProjectName" placeholder="Enter project's name"></InputText>
+	            </div>
+	            <div class="mb-3 d-flex flex-column">
+                     <label>Namespace : </label>
+		            <InputText id="namespace" @bind-Value="projectForm.Namespace" placeholder="Enter namespace"></InputText>
+	            </div>
+	            <div class="mb-3 d-flex flex-column">
+                    <label>SslPort : </label>
+		            <InputText id="sslport" @bind-Value="projectForm.SslPort" placeholder="Enter sslport"></InputText>
+	            </div>
+	            <div class="mb-3 d-flex flex-column">
+                    <label>GitName (required) : </label>
+		            <InputText id="gitname" @bind-Value="projectForm.GitName" placeholder="Enter your git name"></InputText>
+	            </div>
+	            <div class="mb-3 d-flex flex-column">
+                    <label>GitEmail (required) : </label>
+		            <InputText id="gitemail" @bind-Value="projectForm.GitEmail" placeholder="Enter your git email"></InputText>
+	            </div>
+                <button class="btn btn-primary">
+                    Start
+                </button>
+            </div>
+
+            <div class="d-flex flex-column mx-5 col-8">
+                <div class="row">
+                    <div class="radio-group col-5 ml-5">
+                        <div class="d-flex flex-column h-100">
+                            <div class="title-selection title-selection-language px-3 h-25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-journal-code" viewBox="0 0 16 16">
+                                  <path fill-rule="evenodd" d="M8.646 5.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 8 8.646 6.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 8l1.647-1.646a.5.5 0 0 0 0-.708z"/>
+                                  <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                </svg>
+                                <span>Language</span>
+                            </div>
+                            <div class="input-selection-language pb-2 pt-3 px-3 h-75">
+                            <InputRadioGroup TValue="string" @bind-Value="languageElement.Name">
+                                <div class="input-selection d-flex align-items-center justify-content-center justify-content-between p-2">
+                                    <InputRadio class="form-check-input" Value="LanguagesConst.CSharp"/>
+                                    <span>C#</span>
+                                    <img src="assets/CSharp-logo.png" width="35"/>
+                                </div>
+                            </InputRadioGroup>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="radio-group col-5 ml-5">
+                        <div class="d-flex flex-column h-100">
+                            <div class="title-selection title-selection-client px-3 h-25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-image-fill" viewBox="0 0 16 16">
+                                  <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+                                </svg>
+                                <span>Client</span>
+                            </div>
+                            <div class="input-selection-client pb-2 pt-3 px-3 h-75 d-flex">
+                            <InputRadioGroup TValue="string" @bind-Value="clientElement.Name">
+                                <div class="input-selection d-flex align-items-center justify-content-center justify-content-between p-2">
+                                    <InputRadio class="form-check-input" Value="GlobalConst.None"/>
+                                    <span>None</span>
+                                    <img src="assets/jhipster-logo.png" width="30"/>
+                                </div>
+                                
+                                <div class="input-selection d-flex align-items-center justify-content-center justify-content-between p-2 ms-3">
+                                    <InputRadio class="form-check-input" Value="ClientsConst.Blazor"/>
+                                    <span>Blazor</span>
+                                    <img src="assets/Blazor-Logo.png" width="30"/>
+                                </div>
+                            </InputRadioGroup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="radio-group mt-5 col-5 ml-5">
+                        <div class="d-flex flex-column h-100">
+                            <div class="title-selection title-selection-tools px-3 h-25">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                  <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z"/>
+                                </svg>
+                                <span>Tools</span>
+                            </div>
+                            <div class="d-flex pb-2 pt-3 px-3 h-75 input-selection-tools">
+                                <div class="input-selection d-flex align-items-center justify-content-center justify-content-between p-2">
+                                    <input type="checkbox" @oninput="SonarCheckboxChanged"/>
+                                    <span>Sonar</span>
+                                    <img src="assets/sonar-logo.png" width="40"/>
+                                </div>
+                                <div class="check-group-github input-selection d-flex align-items-center justify-content-center justify-content-between p-2 ms-3">
+                                    <input type="checkbox" @oninput="GithubActionCheckboxChanged"/>
+                                    <span>Github Actions</span>
+                                    <img src="assets/github-logo.png" width="40"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+</div>
+
+<div class="selection-render-group mt-2 row d-flex">
+    @foreach (SelectionElement elem in myList)
+    {
+        if (!@elem.Name.Equals(GlobalConst.None) && !ignoredReferences.Contains(@elem.Reference))
+        {
+            <div class="selection-render-item mt-2 w-25">
+                <p class="d-flex justify-content-center align-items-center selection-render-para" style="background-color: @hashSelectionBackgroundColor[@elem.Name]; color: @hashSelectionTitleColor[@elem.Name];">@elem.Name</p>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    ProjectForm projectForm = new ProjectForm();
+    ArrayList myList = new ArrayList();
+    ArrayList ignoredReferences = new ArrayList()
+    {
+        SelectionElement.LanguageReference
+    };
+
+    Dictionary<string, string> hashSelectionBackgroundColor = new Dictionary<string, string>();
+    Dictionary<string, string> hashSelectionTitleColor = new Dictionary<string, string>();
+
+    SelectionElement initializationElement = new SelectionElement(SelectionElement.InitializationReference, SelectionElement.InitializationReference);
+    SelectionElement languageElement = new SelectionElement(LanguagesConst.CSharp, SelectionElement.LanguageReference); 
+    SelectionElement clientElement = new SelectionElement(GlobalConst.None, SelectionElement.ClientReference);
+    SelectionElement sonarElement = new SelectionElement(GlobalConst.None, SelectionElement.SonarReference);
+    SelectionElement githubActionElement = new SelectionElement(GlobalConst.None, SelectionElement.GithubActionReference);
+
+
+
+    protected override void OnInitialized()
+    {
+        myList.Add(initializationElement);
+        myList.Add(languageElement);
+        myList.Add(clientElement);
+        myList.Add(sonarElement);
+        myList.Add(githubActionElement);
+
+        hashSelectionBackgroundColor.Add(ClientsConst.Blazor, BackgroundColorConst.Blazor);
+        hashSelectionBackgroundColor.Add(SelectionElement.InitializationReference , BackgroundColorConst.Initialization);
+        hashSelectionBackgroundColor.Add(SelectionElement.SonarReference , BackgroundColorConst.Sonar);
+        hashSelectionBackgroundColor.Add(SelectionElement.GithubActionReference , BackgroundColorConst.GithubAction);
+
+        hashSelectionTitleColor.Add(ClientsConst.Blazor, TitleColorConst.Blazor);
+        hashSelectionTitleColor.Add(SelectionElement.InitializationReference , TitleColorConst.Initialization);
+        hashSelectionTitleColor.Add(SelectionElement.SonarReference , TitleColorConst.Sonar);
+        hashSelectionTitleColor.Add(SelectionElement.GithubActionReference , TitleColorConst.GithubAction);
+    }
+
+    private async Task ValideForm()
+    {
+        Project project = new Project(
+            projectForm.Folder,
+            projectForm.Namespace,
+            projectForm.ProjectName,
+            projectForm.SslPort,
+            projectForm.GitName,
+            projectForm.GitEmail
+        );
+
+        await initService.Post(project);
+        await apiService.Post(project);
+        await CallTools(project);
+        await CallClients(project);
+    }
+
+    private async Task CallTools(Project project)
+    {
+        if (!sonarElement.Name.Equals(GlobalConst.None))
+        {
+            await sonarService.Post(project);
+        }
+
+        if (!githubActionElement.Name.Equals(GlobalConst.None))
+        {
+            await githubActionService.Post(project);
+        }
+    }
+
+    private async Task CallClients(Project project)
+    {
+        if (!clientElement.Name.Equals(GlobalConst.None))
+        {
+            if (clientElement.Name.Equals(ClientsConst.Blazor))
+            {
+                await blazorService.Post(project);
+            }
+        }
+    }
+
+    private void SonarCheckboxChanged(ChangeEventArgs e)
+    {
+        if ((bool) e.Value)
+        {
+            sonarElement.Name = SelectionElement.SonarReference;
+        }
+        else
+        {
+            sonarElement.Name = GlobalConst.None;
+        }
+    }
+
+    private void GithubActionCheckboxChanged(ChangeEventArgs e)
+    {
+        if ((bool) e.Value)
+        {
+            githubActionElement.Name = SelectionElement.GithubActionReference;
+        }
+        else
+        {
+            githubActionElement.Name = GlobalConst.None;
+        }
+    }
+}
+

@@ -1,0 +1,81 @@
+﻿.div-form {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.radio-group {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    font-size: 25px;
+    padding: 0;
+    margin-right: 50px;
+    height: 150px;
+}
+
+.myNavbar {
+    background-color: #313952;
+    color: red;
+}
+
+.nav-title{
+    color: white;
+}
+
+.title {
+    font-family: 'Pacifico', cursive;
+}
+
+.title-selection {
+    color: white;
+}
+
+.înput-group {
+    height: 300px;
+}
+
+.input-selection {
+    width: 40%;
+    font-size: 20px;
+    background-color: white;
+    height: 58%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.title-selection-language {
+    background-color: #4d4d4d;
+}
+
+.title-selection-client {
+    background-color: #e6e6e6;
+    color: black;
+}
+
+.title-selection-tools {
+    background-color: #006699;
+}
+
+.input-selection-language {
+    background-color: #e6e6e6;
+}
+
+.input-selection-client {
+    background-color: white;
+}
+
+.input-selection-tools {
+    background-color: #e6f7ff;
+}
+
+.check-group-github{
+    line-height: 19px;
+}
+
+
+/*---- RENDER SELECTION ----*/
+
+.selection-render-item {
+    font-size: 20px;
+}
+
+.selection-render-para {
+    height: 50px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
