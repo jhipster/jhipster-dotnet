@@ -1,0 +1,15 @@
+# directories
+**/bin/
+**/obj/
+**/out/
+**/.vs
+**/.vscode
+.github
+.git
+
+
+# files
+**/*.md
+**/.gitignore
+**/.editorconfig
+**/SonarQube.Analysis.xml
