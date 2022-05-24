@@ -1,5 +1,4 @@
 ﻿using BlazorWebClient.Services;
-using BlazorWebClient.Services.Api;
 using BlazorWebClient.Services.GithubAction;
 using BlazorWebClient.Services.Init;
 using BlazorWebClient.Services.Interfaces;

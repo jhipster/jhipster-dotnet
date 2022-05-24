@@ -2,13 +2,12 @@
 @using BlazorWebClient.Data
 @using BlazorWebClient.Data.Consts
 @using BlazorWebClient.Data.Consts.RenderSelection
-@using BlazorWebClient.Services.Api
 @using BlazorWebClient.Services.GithubAction
 @using BlazorWebClient.Services.Init
 @using BlazorWebClient.Services.Interfaces
 @using BlazorWebClient.Services.Sonar
-@using JHipster.NetLite.Domain.Entities
 @using System.Collections
+@using JHipster.NetLite.Dto
 @inject IInitService initService
 @inject IApiService apiService
 @inject IGithubActionService githubActionService
@@ -182,7 +181,7 @@
 
     private async Task ValideForm()
     {
-        Project project = new Project(
+        ProjectDto projectDto = new ProjectDto(
             projectForm.Folder,
             projectForm.Namespace,
             projectForm.ProjectName,
@@ -191,32 +190,32 @@
             projectForm.GitEmail
         );
 
-        await initService.Post(project);
-        await apiService.Post(project);
-        await CallTools(project);
-        await CallClients(project);
+        await initService.Post(projectDto);
+        await apiService.Post(projectDto);
+        await CallTools(projectDto);
+        await CallClients(projectDto);
     }
 
-    private async Task CallTools(Project project)
+    private async Task CallTools(ProjectDto projectDto)
     {
         if (!sonarElement.Name.Equals(GlobalConst.None))
         {
-            await sonarService.Post(project);
+            await sonarService.Post(projectDto);
         }
 
         if (!githubActionElement.Name.Equals(GlobalConst.None))
         {
-            await githubActionService.Post(project);
+            await githubActionService.Post(projectDto);
         }
     }
 
-    private async Task CallClients(Project project)
+    private async Task CallClients(ProjectDto projectDto)
     {
         if (!clientElement.Name.Equals(GlobalConst.None))
         {
             if (clientElement.Name.Equals(ClientsConst.Blazor))
             {
-                await blazorService.Post(project);
+                await blazorService.Post(projectDto);
             }
         }
     }

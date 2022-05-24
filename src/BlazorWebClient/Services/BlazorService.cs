@@ -1,14 +1,11 @@
-﻿using AutoMapper;
-using BlazorWebClient.Services.Interfaces;
-using JHipster.NetLite.Domain.Entities;
-using JHipster.NetLite.Web.DTO;
+﻿using BlazorWebClient.Services.Interfaces;
 
 namespace BlazorWebClient.Services;
 
 public class BlazorService : AbstractEntityService, IBlazorService
 {
-    public BlazorService(HttpClient httpClient, IMapper mapper)
-    : base(httpClient, mapper, "https://localhost:7107/api/projects/clients/Blazor")
+    public BlazorService(HttpClient httpClient)
+    : base(httpClient,"https://localhost:7107/api/projects/clients/Blazor")
     {
     }
 }
