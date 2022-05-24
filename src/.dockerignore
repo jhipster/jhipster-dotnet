@@ -6,10 +6,3 @@
 **/.vscode
 .github
 .git
-
-
-# files
-**/*.md
-**/.gitignore
-**/.editorconfig
-**/SonarQube.Analysis.xml

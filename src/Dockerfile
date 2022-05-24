@@ -1,19 +1,39 @@
-# https://hub.docker.com/_/microsoft-dotnet
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /source
-
+WORKDIR /app
+#
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY src/**/*.csproj ./jhipster-dotnet/
-RUN dotnet restore
+COPY BlazorWebClient/*.csproj ./BlazorWebClient/
+COPY JHipster.NetLite.Application/*.csproj ./JHipster.NetLite.Application/
+COPY JHipster.NetLite.Core/*.csproj ./JHipster.NetLite.Core/
+COPY JHipster.NetLite.Domain/*.csproj ./JHipster.NetLite.Domain/ 
+COPY JHipster.NetLite.Domain.Services/*.csproj ./JHipster.NetLite.Domain.Services/
+COPY JHipster.NetLite.Dto/*.csproj ./JHipster.NetLite.Dto/
+COPY JHipster.NetLite.Infrastructure/*.csproj ./JHipster.NetLite.Infrastructure/
+COPY JHipster.NetLite.WebAPI/*.csproj ./JHipster.NetLite.WebAPI/
 
+COPY BlazorWebClient.EndToEnd.Tests/*.csproj ./BlazorWebClient.EndToEnd.Tests/
+COPY BlazorWebClient.Tests/*.csproj ./BlazorWebClient.Tests/
+COPY JHipster.NetLite.Application.Tests/*.csproj ./JHipster.NetLite.Application.Tests/
+COPY JHipster.NetLite.Domain.Services.Tests/*.csproj ./JHipster.NetLite.Domain.Services.Tests/
+COPY JHipster.NetLite.Infrastructure.Tests/*.csproj ./JHipster.NetLite.Infrastructure.Tests/
+COPY JHipster.NetLite.Web.Tests/*.csproj ./JHipster.NetLite.Web.Tests/
+#
+RUN dotnet restore 
+#
 # copy everything else and build app
-COPY src/. ./aspnetapp/
-WORKDIR /source/jhipster-dotnet
-RUN dotnet publish -c release -o /app --no-restore
-
-# final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "jhipster-dotnet.dll"]
+COPY BlazorWebClient/. ./BlazorWebClient/
+COPY JHipster.NetLite.Application/. ./JHipster.NetLite.Application/
+COPY JHipster.NetLite.Core/. ./JHipster.NetLite.Core/
+COPY JHipster.NetLite.Domain/. ./JHipster.NetLite.Domain/ 
+COPY JHipster.NetLite.Domain.Services/. ./JHipster.NetLite.Domain.Services/
+COPY JHipster.NetLite.Dto/. ./JHipster.NetLite.Dto/
+COPY JHipster.NetLite.Infrastructure/. ./JHipster.NetLite.Infrastructure/
+COPY JHipster.NetLite.WebAPI/. ./JHipster.NetLite.WebAPI/
+#
+RUN dotnet publish -c Release -o jhipster-dotnet/out 
+#
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+#
+COPY --from=build /app/jhipster-dotnet/out ./
+ENTRYPOINT ["dotnet", "JHipster.NetLite.WebAPI.dll"]
