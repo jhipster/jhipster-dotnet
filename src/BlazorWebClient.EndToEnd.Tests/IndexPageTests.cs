@@ -20,13 +20,13 @@ namespace BlazorWebClient.EndToEnd.Tests
 
         private string _generationFolderTestMessage = Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Test");
 
-
         [TestMethod]
         public async Task Should_ShowErrorsMessage_When_EmptyForm()
         {
             //Arrange
             using var playwright = await Playwright.CreateAsync();
-            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true,
+             Channel = "chrome"});
             var page = await browser.NewPageAsync();
             await page.GotoAsync(PathApplication);
             await page.ClickAsync("#submitter");
