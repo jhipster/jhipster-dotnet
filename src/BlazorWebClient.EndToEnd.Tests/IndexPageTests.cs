@@ -20,6 +20,11 @@ namespace BlazorWebClient.EndToEnd.Tests
 
         private string _generationFolderTestMessage = Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Test");
 
+        public IndexPageTests()
+        {
+            Microsoft.Playwright.Program.Main(new string[] { "install" });
+        }
+
         [TestMethod]
         public async Task Should_ShowErrorsMessage_When_EmptyForm()
         {
