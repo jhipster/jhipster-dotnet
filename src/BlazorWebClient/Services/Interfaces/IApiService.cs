@@ -1,8 +1,9 @@
-﻿using JHipster.NetLite.Domain.Entities;
+﻿using JHipster.NetLite.Dto;
 
-namespace BlazorWebClient.Services.Api;
-
-public interface IApiService
+namespace BlazorWebClient.Services.Interfaces
 {
-    Task Post(Project project);
+    public interface IApiService
+    {
+        Task Post(ProjectDto projectDto);
+    }
 }

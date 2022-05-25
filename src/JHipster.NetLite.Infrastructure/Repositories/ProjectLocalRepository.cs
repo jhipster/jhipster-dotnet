@@ -1,6 +1,5 @@
 ﻿using JHipster.NetLite.Domain.Repositories.Interfaces;
 using JHipster.NetLite.Infrastructure.Helpers;
-using JHipster.NetLite.Infrastucture.Repositories.Exceptions;
 using Microsoft.Extensions.Logging;
 using JHipster.NetLite.Domain.Services.Interfaces;
 using JHipster.NetLite.Domain.Entities;

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,15 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.4" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JHipster.NetLite.Core\JHipster.NetLite.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\css\custom.css" />
+    <ProjectReference Include="..\JHipster.NetLite.Dto\JHipster.NetLite.Dto.csproj" />
   </ItemGroup>
 
 </Project>

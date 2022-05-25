@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using JHipster.NetLite.Application.Services.Interfaces;
 using JHipster.NetLite.Domain.Entities;
-using JHipster.NetLite.Web.DTO;
+using JHipster.NetLite.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

@@ -1,5 +1,4 @@
-﻿
-namespace JHipster.NetLite.Infrastucture.Repositories.Exceptions;
+﻿namespace JHipster.NetLite.Infrastructure.Repositories.Exceptions;
 
 public class InvalidNewPathNameException : Exception
 {

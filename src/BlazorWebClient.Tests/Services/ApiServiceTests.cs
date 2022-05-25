@@ -1,13 +1,13 @@
 ﻿using AutoFixture;
-using BlazorWebClient.Services.Api;
+using BlazorWebClient.Services.Interfaces;
 using FluentAssertions;
-using JHipster.NetLite.Domain.Entities;
+using JHipster.NetLite.Dto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Threading.Tasks;
 
-namespace BlazorWebClient.Tests;
+namespace BlazorWebClient.Tests.Services;
 
 [TestClass]
 public class ApiServiceTests
@@ -26,11 +26,11 @@ public class ApiServiceTests
     public async Task Should_NotThrow_When_Init()
     {
         //Arrange
-        var project = _fixture.Create<Project>();
-        _apiService.Setup(service => service.Post(project)).Returns(Task.FromResult(true));
+        var projectDto = _fixture.Create<ProjectDto>();
+        _apiService.Setup(service => service.Post(projectDto)).Returns(Task.FromResult(true));
 
         //Act
-        Func<Task> task = async () => await _apiService.Object.Post(project);
+        Func<Task> task = async () => await _apiService.Object.Post(projectDto);
 
         //Assert
         await task.Should().NotThrowAsync();

@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using JHipster.NetLite.Application.Services.Interfaces;
 using JHipster.NetLite.Domain.Entities;
-using JHipster.NetLite.Web.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using JHipster.NetLite.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Controllers.Projects;
+namespace JHipster.NetLite.Web.Controllers.Projects.CI;
 
 [ApiController]
 [Route("[controller]")]
