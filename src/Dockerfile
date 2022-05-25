@@ -31,9 +31,13 @@ COPY JHipster.NetLite.Dto/. ./JHipster.NetLite.Dto/
 COPY JHipster.NetLite.Infrastructure/. ./JHipster.NetLite.Infrastructure/
 COPY JHipster.NetLite.WebAPI/. ./JHipster.NetLite.WebAPI/
 #
-RUN dotnet publish -c Release -o jhipster-dotnet/out 
+WORKDIR /app/JHipster.NetLite.WebAPI
+
+RUN dotnet publish -c Release -o out 
 #
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+EXPOSE 80
 #
-COPY --from=build /app/jhipster-dotnet/out ./
-ENTRYPOINT ["dotnet", "JHipster.NetLite.WebAPI.dll"]
+COPY --from=build /app/JHipster.NetLite.WebAPI/out ./
+ENTRYPOINT ["dotnet", "JHipster.NetLite.WebAPI.dll", "--environment=Development"]
