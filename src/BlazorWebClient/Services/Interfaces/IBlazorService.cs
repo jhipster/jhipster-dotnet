@@ -1,8 +1,8 @@
-﻿using JHipster.NetLite.Domain.Entities;
+﻿using JHipster.NetLite.Dto;
 
 namespace BlazorWebClient.Services.Interfaces;
 
 public interface IBlazorService
 {
-    Task Post(Project project);
+    Task Post(ProjectDto projectDto);
 }

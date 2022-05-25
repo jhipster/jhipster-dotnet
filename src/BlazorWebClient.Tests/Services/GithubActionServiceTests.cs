@@ -1,7 +1,8 @@
 ﻿using AutoFixture;
 using BlazorWebClient.Services.GithubAction;
+using BlazorWebClient.Services.Interfaces;
 using FluentAssertions;
-using JHipster.NetLite.Domain.Entities;
+using JHipster.NetLite.Dto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorWebClient.Tests;
+namespace BlazorWebClient.Tests.Services;
 
 [TestClass]
 public class GithubActionServiceTests
@@ -29,11 +30,11 @@ public class GithubActionServiceTests
     public async Task Should_NotThrow_When_Init()
     {
         //Arrange
-        var project = _fixture.Create<Project>();
-        _githubActionService.Setup(service => service.Post(project)).Returns(Task.FromResult(true));
+        var projecDto = _fixture.Create<ProjectDto>();
+        _githubActionService.Setup(service => service.Post(projecDto)).Returns(Task.FromResult(true));
 
         //Act
-        Func<Task> task = async () => await _githubActionService.Object.Post(project);
+        Func<Task> task = async () => await _githubActionService.Object.Post(projecDto);
 
         //Assert
         await task.Should().NotThrowAsync();

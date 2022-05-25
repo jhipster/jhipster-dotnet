@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorWebClient\BlazorWebClient.csproj" />
+    <ProjectReference Include="..\JHipster.NetLite.Dto\JHipster.NetLite.Dto.csproj" />
   </ItemGroup>
 
 </Project>
