@@ -23,25 +23,25 @@ public class InitDomainService : IInitDomainService
         _logger = logger;
     }
 
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await AddReadme(project);
-        await InitSolution(project);
-        await InitTests(project);
+        await AddReadmeAsync(project);
+        await InitSolutionAsync(project);
+        await InitTestsAsync(project);
         InitGit(project);
     }
 
-    private async Task AddReadme(Project project)
+    private async Task AddReadmeAsync(Project project)
     {
-        await _projectRepository.Template(project, "Init", "Readme.md");
+        await _projectRepository.TemplateAsync(project, "Init", "Readme.md");
     }
 
-    private async Task InitSolution(Project project)
+    private async Task InitSolutionAsync(Project project)
     {
         //Solution
         _projectRepository.GenerateSolution(project, project.ProjectName);
         //csproj
-        await _projectRepository.Template(project, Path.Join("Api", "WebApi"), CsprojNameWebApi + ".csproj");
+        await _projectRepository.TemplateAsync(project, Path.Join("Api", "WebApi"), CsprojNameWebApi + ".csproj");
         _projectRepository.AddProjectsToSolution(project, project.ProjectName, Path.Join("WebApi", CsprojNameWebApi));
     }
 
@@ -50,11 +50,11 @@ public class InitDomainService : IInitDomainService
         _projectRepository.InitGit(project);
     }
 
-    private async Task InitTests(Project project)
+    private async Task InitTestsAsync(Project project)
     {
-        await _projectRepository.Template(project, Path.Join("Tests", "SampleTests"), CsprojNameTests + ".csproj");
+        await _projectRepository.TemplateAsync(project, Path.Join("Tests", "SampleTests"), CsprojNameTests + ".csproj");
         _projectRepository.AddProjectsToSolution(project, project.ProjectName, Path.Join("SampleTests", CsprojNameTests));
 
-        await _projectRepository.Add(project.Folder, Path.Join("Tests", "SampleTests"), "UnitTest1.cs");
+        await _projectRepository.AddAsync(project.Folder, Path.Join("Tests", "SampleTests"), "UnitTest1.cs");
     }
 }

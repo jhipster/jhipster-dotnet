@@ -39,10 +39,10 @@ namespace JHipster.NetLite.Application.Tests
         {
             //Arrange
             var project = _fixture.Create<Project>();
-            _blazorDomainService.Setup(m => m.Init(project)).Returns(Task.FromResult(true));
+            _blazorDomainService.Setup(m => m.InitAsync(project)).Returns(Task.FromResult(true));
 
             //Act
-            Func<Task> task = async () => await _blazorApplicationService.Init(project);
+            Func<Task> task = async () => await _blazorApplicationService.InitAsync(project);
 
             //Assert
             await task.Should().NotThrowAsync();

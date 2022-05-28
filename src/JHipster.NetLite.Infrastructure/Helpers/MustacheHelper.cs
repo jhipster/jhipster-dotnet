@@ -8,7 +8,7 @@ public static class MustacheHelper
 {
     public const string Extension = ".mustache";
 
-    public static async Task<string> Template(string filePath, Project project)
+    public static async Task<string> TemplateAsync(string filePath, Project project)
     {
         var source = await File.ReadAllTextAsync(filePath);
         var template = Handlebars.Compile(source);

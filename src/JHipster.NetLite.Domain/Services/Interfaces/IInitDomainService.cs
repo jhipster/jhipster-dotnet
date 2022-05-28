@@ -4,5 +4,5 @@ namespace JHipster.NetLite.Domain.Services.Interfaces;
 
 public interface IInitDomainService
 {
-    Task Init(Project project);
+    Task InitAsync(Project project);
 }

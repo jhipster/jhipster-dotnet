@@ -47,11 +47,11 @@ namespace JHipster.NetLite.Core.Tests
         public async Task Should_ReturnBadRequest_When_Exception()
         {
             //Arrange
-            _blazorApplicationService.Setup(app => app.Init(It.IsAny<Project>()))
+            _blazorApplicationService.Setup(app => app.InitAsync(It.IsAny<Project>()))
                 .Throws(new Exception("test unitaire"));
 
             //Act 
-            var result = await _blazorController.Post(_fixture.Create<ProjectDto>());
+            var result = await _blazorController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert 
             var statusResult = result as BadRequestObjectResult;
@@ -65,7 +65,7 @@ namespace JHipster.NetLite.Core.Tests
             //Arrange
 
             //Act
-            var result = await _blazorController.Post(_fixture.Create<ProjectDto>());
+            var result = await _blazorController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert
             var statusResult = result as OkResult;

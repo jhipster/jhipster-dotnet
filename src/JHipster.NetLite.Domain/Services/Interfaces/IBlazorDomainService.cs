@@ -9,5 +9,5 @@ namespace JHipster.NetLite.Domain.Services.Interfaces;
 
 public interface IBlazorDomainService
 {
-    Task Init(Project project);
+    Task InitAsync(Project project);
 }

@@ -50,7 +50,7 @@ namespace JHipster.NetLite.Domain.Services.Tests
             //Arrange
 
             //Act
-            Func<Task> task = async () => await _blazorDomainService.Init(_project);
+            Func<Task> task = async () => await _blazorDomainService.InitAsync(_project);
 
             //Assert
             await task.Should().NotThrowAsync();

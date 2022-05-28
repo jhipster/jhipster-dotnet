@@ -17,14 +17,14 @@ public class GithubActionDomainService : IGithubActionDomainService
         _logger = logger;
     }
 
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await AddGithubAction(project);
+        await AddGithubActionAsync(project);
     }
 
-    private async Task AddGithubAction(Project project)
+    private async Task AddGithubActionAsync(Project project)
     {
         //Dotnet yml
-        await _projectRepository.Add(project.Folder, Path.Join("GithubAction", ".github", "workflows"), "dotnet.yml");
+        await _projectRepository.AddAsync(project.Folder, Path.Join("GithubAction", ".github", "workflows"), "dotnet.yml");
     }
 }

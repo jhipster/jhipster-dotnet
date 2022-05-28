@@ -32,7 +32,7 @@ public class SonarController : ControllerBase
     /// <summary>
     /// Generating the Sonar's files
     /// </summary>
-    /// <param name="folder"></param>
+    /// <param name="projectDto"></param>
     /// <returns></returns>
     /// <remarks>
     /// Sample request:
@@ -49,12 +49,12 @@ public class SonarController : ControllerBase
     /// </remarks>
     [HttpPost]
     [Route("/api/projects/sonar")]
-    public async Task<IActionResult> Post(ProjectDto projectDto)
+    public async Task<IActionResult> PostAsync(ProjectDto projectDto)
     {
         try
         {
             var project = _mapper.Map<Project>(projectDto);
-            await _sonarApplicationService.Init(project);
+            await _sonarApplicationService.InitAsync(project);
 
             _logger.LogInformation("Request succes");
             return Ok();

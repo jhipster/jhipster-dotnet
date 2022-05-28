@@ -32,7 +32,7 @@ public class BlazorController : ControllerBase
     /// <summary>
     /// Generating the Blazor web client
     /// </summary>
-    /// <param name="folder"></param>
+    /// <param name="projectDto"></param>
     /// <returns></returns>
     /// <remarks>
     /// Sample request:
@@ -49,12 +49,12 @@ public class BlazorController : ControllerBase
     /// </remarks>
     [HttpPost]
     [Route("/api/projects/clients/Blazor")]
-    public async Task<IActionResult> Post(ProjectDto projectDto)
+    public async Task<IActionResult> PostAsync(ProjectDto projectDto)
     {
         try
         {
             var project = _mapper.Map<Project>(projectDto);
-            await _blazorApplicationService.Init(project);
+            await _blazorApplicationService.InitAsync(project);
 
             _logger.LogInformation("Request succes");
             return Ok();

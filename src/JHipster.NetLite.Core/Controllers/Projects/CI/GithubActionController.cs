@@ -32,7 +32,7 @@ public class GithubActionController : ControllerBase
     /// <summary>
     /// Generating the github action's files
     /// </summary>
-    /// <param name="folder"></param>
+    /// <param name="projectDto"></param>
     /// <returns></returns>
     /// <remarks>
     /// Sample request:
@@ -49,12 +49,12 @@ public class GithubActionController : ControllerBase
     /// </remarks>
     [HttpPost]
     [Route("/api/projects/CI/GithubAction")]
-    public async Task<IActionResult> Post(ProjectDto projectDto)
+    public async Task<IActionResult> PostAsync(ProjectDto projectDto)
     {
         try
         {
             var project = _mapper.Map<Project>(projectDto);
-            await _initApplicationGithubAction.Init(project);
+            await _initApplicationGithubAction.InitAsync(project);
 
             _logger.LogInformation("Request succes");
             return Ok();

@@ -20,17 +20,17 @@ public class ProjectLocalRepository : IProjectRepository
 
     public ProjectLocalRepository(ILogger<IInitDomainService> logger) => _logger = logger;
 
-    public async Task Add(string folder, string source, string sourceFilename)
+    public async Task AddAsync(string folder, string source, string sourceFilename)
     {
-        await Add(folder, source, sourceFilename, ".");
+        await AddAsync(folder, source, sourceFilename, ".");
     }
 
-    public async Task Add(string folder, string source, string sourceFilename, string destination)
+    public async Task AddAsync(string folder, string source, string sourceFilename, string destination)
     {
-        await Add(folder, source, sourceFilename, destination, sourceFilename);
+        await AddAsync(folder, source, sourceFilename, destination, sourceFilename);
     }
 
-    public async Task Add(string folder, string source, string sourceFilename, string destination, string destinationFilename)
+    public async Task AddAsync(string folder, string source, string sourceFilename, string destination, string destinationFilename)
     {
         _logger.LogInformation($"Adding file '{destinationFilename}'");
         var folders = source.Split(Path.DirectorySeparatorChar);
@@ -52,20 +52,20 @@ public class ProjectLocalRepository : IProjectRepository
 
         await File.WriteAllTextAsync(destinationPath, dataToCopy);
 
-        await AssertFileIsGenerated(destinationPath, dataToCopy);
+        await AssertFileIsGeneratedAsync(destinationPath, dataToCopy);
     }
 
-    public async Task Template(Project project, string pathFile, string fileNameWithExtension)
+    public async Task TemplateAsync(Project project, string pathFile, string fileNameWithExtension)
     {
-        await Template(project, pathFile, fileNameWithExtension, ".");
+        await TemplateAsync(project, pathFile, fileNameWithExtension, ".");
     }
 
-    public async Task Template(Project project, string pathFile, string fileNameWithExtension, string newPathFile)
+    public async Task TemplateAsync(Project project, string pathFile, string fileNameWithExtension, string newPathFile)
     {
-        await Template(project, pathFile, fileNameWithExtension, newPathFile, fileNameWithExtension);
+        await TemplateAsync(project, pathFile, fileNameWithExtension, newPathFile, fileNameWithExtension);
     }
 
-    public async Task Template(Project project, string pathFile, string fileNameWithExtension, string newPathFile, string newPathName)
+    public async Task TemplateAsync(Project project, string pathFile, string fileNameWithExtension, string newPathFile, string newPathName)
     {
         AssertRequiredTemplateParameters(project.Folder, pathFile, fileNameWithExtension, newPathFile, newPathName);
 
@@ -85,10 +85,10 @@ public class ProjectLocalRepository : IProjectRepository
         Directory.CreateDirectory(pathFolderToCreate);
         string pathFileToPaste = Path.Join(pathFolderToCreate, newPathName);
 
-        var dataToPast = await MustacheHelper.Template(pathFileToCopy, project);
+        var dataToPast = await MustacheHelper.TemplateAsync(pathFileToCopy, project);
         await File.WriteAllTextAsync(pathFileToPaste, dataToPast);
 
-        await AssertFileIsGenerated(pathFileToPaste, dataToPast);
+        await AssertFileIsGeneratedAsync(pathFileToPaste, dataToPast);
 
         _logger.LogInformation($"Ending templating '{pathFileToPaste}'");
     }
@@ -122,7 +122,7 @@ public class ProjectLocalRepository : IProjectRepository
         dotnetCLIWrapper.Tests();
     }
 
-    private async Task AssertFileIsGenerated(string pathFileGenerated, string data)
+    private async Task AssertFileIsGeneratedAsync(string pathFileGenerated, string data)
     {
         string dataFileGenerated;
 

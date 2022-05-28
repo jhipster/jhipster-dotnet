@@ -40,10 +40,10 @@ namespace JHipster.NetLite.Application.Tests
         {
             //Arrange
             var project = _fixture.Create<Project>();
-            _initDomainService.Setup(m => m.Init(project)).Returns(Task.FromResult(true));
+            _initDomainService.Setup(m => m.InitAsync(project)).Returns(Task.FromResult(true));
 
             //Act
-            Func<Task> task = async () => await _initApplicationService.Init(project);
+            Func<Task> task = async () => await _initApplicationService.InitAsync(project);
 
             //Assert
             await task.Should().NotThrowAsync();

@@ -20,13 +20,13 @@ public class SonarDomainService : ISonarDomainService
         _logger = logger;
     }
 
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await AddSonar(project);
+        await AddSonarAsync(project);
     }
 
-    private async Task AddSonar(Project project)
+    private async Task AddSonarAsync(Project project)
     {
-        await _projectRepository.Add(project.Folder, "Sonar", "SonarQube.Analysis.xml");
+        await _projectRepository.AddAsync(project.Folder, "Sonar", "SonarQube.Analysis.xml");
     }
 }

@@ -17,8 +17,8 @@ public class InitApplicationService : IInitApplicationService
         _logger = logger;
     }
 
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await _initDomainService.Init(project);
+        await _initDomainService.InitAsync(project);
     }
 }
