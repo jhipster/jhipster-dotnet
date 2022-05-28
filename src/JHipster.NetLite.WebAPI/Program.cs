@@ -1,5 +1,5 @@
-﻿using JHipster.NetLite.Web;
-using JHipster.NetLite.Web.Utils;
+﻿using JHipster.NetLite.Core;
+using JHipster.NetLite.Core.Utils;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

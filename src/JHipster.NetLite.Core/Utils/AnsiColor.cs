@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Utils;
+namespace JHipster.NetLite.Core.Utils;
 
 public static class AnsiColor
 {

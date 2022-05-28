@@ -10,6 +10,7 @@
     <Compile Remove="Templates\Blazor\BlazorWebClient\Model\WeatherForecast.cs" />
     <Compile Remove="Templates\Blazor\BlazorWebClient\Program.cs" />
     <Compile Remove="Templates\Blazor\Program.cs" />
+    <Compile Remove="Templates\Tests\SampleTests\UnitTest1.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +51,7 @@
     <None Remove="Templates\Api\WebApi\Program.cs.mustache" />
     <None Remove="Templates\Api\WebApi\Properties\launchSettings.json.mustache" />
     <None Remove="Templates\Api\WebApi\WeatherForecast.cs.mustache" />
+    <None Remove="Templates\Tests\SampleTests\SampleTests.csproj.mustache" />
   </ItemGroup>
 
   <ItemGroup>
@@ -174,6 +176,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\Api\WebApi\WeatherForecast.cs.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Tests\SampleTests\SampleTests.csproj.mustache">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Tests\SampleTests\UnitTest1.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

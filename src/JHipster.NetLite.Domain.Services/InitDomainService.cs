@@ -13,7 +13,9 @@ public class InitDomainService : IInitDomainService
 
     private readonly ILogger<InitDomainService> _logger;
 
-    private const string CsprojName = "WebApi";
+    private const string CsprojNameWebApi = "WebApi";
+
+    private const string CsprojNameTests = "SampleTests";
 
     public InitDomainService(IProjectRepository projectRepository, ILogger<InitDomainService> logger)
     {
@@ -25,6 +27,7 @@ public class InitDomainService : IInitDomainService
     {
         await AddReadme(project);
         await InitSolution(project);
+        await InitTests(project);
         InitGit(project);
     }
 
@@ -38,12 +41,20 @@ public class InitDomainService : IInitDomainService
         //Solution
         _projectRepository.GenerateSolution(project, project.ProjectName);
         //csproj
-        await _projectRepository.Template(project, Path.Join("Api", "WebApi"), CsprojName + ".csproj");
-        _projectRepository.AddProjectsToSolution(project, project.ProjectName, Path.Join("WebApi", CsprojName));
+        await _projectRepository.Template(project, Path.Join("Api", "WebApi"), CsprojNameWebApi + ".csproj");
+        _projectRepository.AddProjectsToSolution(project, project.ProjectName, Path.Join("WebApi", CsprojNameWebApi));
     }
 
     private void InitGit(Project project)
     {
         _projectRepository.InitGit(project);
+    }
+
+    private async Task InitTests(Project project)
+    {
+        await _projectRepository.Template(project, Path.Join("Tests", "SampleTests"), CsprojNameTests + ".csproj");
+        _projectRepository.AddProjectsToSolution(project, project.ProjectName, Path.Join("SampleTests", CsprojNameTests));
+
+        await _projectRepository.Add(project.Folder, Path.Join("Tests", "SampleTests"), "UnitTest1.cs");
     }
 }

@@ -1,14 +1,14 @@
 ﻿using JHipster.NetLite.Application.Services;
 using JHipster.NetLite.Application.Services.Interfaces;
+using JHipster.NetLite.Core.Utils;
 using JHipster.NetLite.Domain.Repositories.Interfaces;
 using JHipster.NetLite.Domain.Services;
 using JHipster.NetLite.Domain.Services.Interfaces;
 using JHipster.NetLite.Infrastructure.Repositories;
-using JHipster.NetLite.Web.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace JHipster.NetLite.Web;
+namespace JHipster.NetLite.Core;
 
 public static class ServiceCollectionExtensions
 {

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Controllers.Projects.CI;
+namespace JHipster.NetLite.Core.Controllers.Projects.CI;
 
 [ApiController]
 [Route("[controller]")]

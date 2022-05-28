@@ -5,7 +5,7 @@ using JHipster.NetLite.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace JHipster.NetLite.Web.Controllers.Projects;
+namespace JHipster.NetLite.Core.Controllers.Projects;
 
 [ApiController]
 [Route("[controller]")]
