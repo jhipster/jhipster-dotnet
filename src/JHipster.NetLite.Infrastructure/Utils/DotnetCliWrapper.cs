@@ -23,8 +23,8 @@ public class DotnetCliWrapper
     public DotnetCliWrapper(string workingDirectory, ILogger<IInitDomainService> logger)
     {
         _logger = logger;
-        HasDotnet();
         InitializeProcessStartInfo(workingDirectory);
+        HasDotnet();
     }
 
     private void InitializeProcessStartInfo(string workingDirectory)

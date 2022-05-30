@@ -19,8 +19,8 @@ public class GitCliWrapper
     public GitCliWrapper(string workingDirectory, string authorName, string authorEmail, ILogger<IInitDomainService> logger)
     {
         _logger = logger;
-        HasGit();
         InitializeProcessStartInfo(workingDirectory);
+        HasGit();
         InitializeGitAuthor(authorName, authorEmail);
     }
 
