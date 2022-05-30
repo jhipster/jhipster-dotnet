@@ -19,6 +19,7 @@ public class GitCliWrapper
     public GitCliWrapper(string workingDirectory, string authorName, string authorEmail, ILogger<IInitDomainService> logger)
     {
         _logger = logger;
+        HasGit();
         InitializeProcessStartInfo(workingDirectory);
         InitializeGitAuthor(authorName, authorEmail);
     }
@@ -34,25 +35,22 @@ public class GitCliWrapper
 
     private void InitializeGitAuthor(string authorName, string authorEmail)
     {
-        if (HasGit())
-        {
-            processStartInfo.Arguments = $"config --global user.email \"{authorEmail}\"";
+        processStartInfo.Arguments = $"config --global user.email \"{authorEmail}\"";
 
-            Process process1 = new Process();
-            process1.StartInfo = processStartInfo;
-            process1.Start();
-            process1.WaitForExit();
+        Process process1 = new Process();
+        process1.StartInfo = processStartInfo;
+        process1.Start();
+        process1.WaitForExit();
 
-            processStartInfo.Arguments = $"config --global user.name \"{authorName}\"";
+        processStartInfo.Arguments = $"config --global user.name \"{authorName}\"";
 
-            Process process2 = new Process();
-            process2.StartInfo = processStartInfo;
-            process2.Start();
-            process2.WaitForExit();
-        }
+        Process process2 = new Process();
+        process2.StartInfo = processStartInfo;
+        process2.Start();
+        process2.WaitForExit();
     }
 
-    private bool HasGit()
+    private void HasGit()
     {
         try
         {
@@ -63,53 +61,43 @@ public class GitCliWrapper
             process.Start();
             process.WaitForExit();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError("Git is not installed");
-            return false;
+            _logger.LogError($"Git is not installed : {e.Message}");
+            throw new Exception(e.Message);
         }
-        return true;
     }
 
     public GitCliWrapper Init()
     {
-        if (HasGit())
-        {
-            processStartInfo.Arguments = "init";
+        processStartInfo.Arguments = "init";
 
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
-        }
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
 
         return this;
     }
 
     public GitCliWrapper AddAll()
     {
-        if (HasGit())
-        {
-            Process process = new Process();
-            processStartInfo.Arguments = $"add -A";
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
-        }
+        Process process = new Process();
+        processStartInfo.Arguments = $"add -A";
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
 
         return this;
     }
 
     public GitCliWrapper Commit(string message)
     {
-        if (HasGit())
-        {
-            Process process = new Process();
-            processStartInfo.Arguments = $"commit -m \"{message}\"";
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
-        }
+        Process process = new Process();
+        processStartInfo.Arguments = $"commit -m \"{message}\"";
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
 
         return this;
     }
@@ -120,28 +108,25 @@ public class GitCliWrapper
         StringBuilder sb = new StringBuilder();
         int nbCommitInfo = 0;
 
-        if (HasGit())
+        Process process = new Process();
+        processStartInfo.Arguments = "log";
+        process.StartInfo = processStartInfo;
+
+        process.OutputDataReceived += (sender, args) =>
         {
-            Process process = new Process();
-            processStartInfo.Arguments = "log";
-            process.StartInfo = processStartInfo;
+            sb.AppendLine(args.Data);
+            nbCommitInfo++;
 
-            process.OutputDataReceived += (sender, args) =>
+            if (nbCommitInfo == 6)
             {
-                sb.AppendLine(args.Data);
-                nbCommitInfo++;
-
-                if (nbCommitInfo == 6)
-                {
-                    nbCommitInfo = 0;
-                    commits.Add(sb.ToString());
-                    sb.Clear();
-                }
-            };
-            process.Start();
-            process.BeginOutputReadLine();
-            process.WaitForExit();
-        }
+                nbCommitInfo = 0;
+                commits.Add(sb.ToString());
+                sb.Clear();
+            }
+        };
+        process.Start();
+        process.BeginOutputReadLine();
+        process.WaitForExit();
 
         return commits;
     }

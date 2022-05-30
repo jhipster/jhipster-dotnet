@@ -96,9 +96,9 @@ public class ProjectLocalRepository : IProjectRepository
     public void InitGit(Project project)
     {
         var gitCli = new GitCliWrapper(project.Folder, project.GitName, project.GitEmail, _logger);
-        gitCli.Init();
-        gitCli.AddAll();
-        gitCli.Commit(InitialCommitMessage);
+        gitCli.Init()
+              .AddAll()
+              .Commit(InitialCommitMessage);
     }
 
     public void GenerateSolution(Project project, string solutionName)

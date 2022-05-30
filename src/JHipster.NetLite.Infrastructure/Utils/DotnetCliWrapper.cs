@@ -23,6 +23,7 @@ public class DotnetCliWrapper
     public DotnetCliWrapper(string workingDirectory, ILogger<IInitDomainService> logger)
     {
         _logger = logger;
+        HasDotnet();
         InitializeProcessStartInfo(workingDirectory);
     }
 
@@ -35,7 +36,7 @@ public class DotnetCliWrapper
         processStartInfo.WorkingDirectory = workingDirectory;
     }
 
-    private bool HasDotnet()
+    private void HasDotnet()
     {
         try
         {
@@ -46,74 +47,61 @@ public class DotnetCliWrapper
             process.Start();
             process.WaitForExit();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError("Dotnet is not installed");
-            return false;
+            _logger.LogError($"Dotnet is not installed : {e.Message}");
+            throw new Exception(e.Message);
         }
-        return true;
     }
 
     public void NewSln(string solutionName, bool force)
     {
-        if (HasDotnet())
+        if (force)
         {
-            if (force)
-            {
-                processStartInfo.Arguments = $"new sln --name {solutionName} --force";
-            }
-            else
-            {
-                processStartInfo.Arguments = $"new sln --name {solutionName}";
-            }
-
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
+            processStartInfo.Arguments = $"new sln --name {solutionName} --force";
         }
+        else
+        {
+            processStartInfo.Arguments = $"new sln --name {solutionName}";
+        }
+
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
     }
 
     public void SlnAdd(string solutionFile, params string[] projects)
     {
-        if (HasDotnet())
+        processStartInfo.Arguments = $"sln {solutionFile + SolutionExtension} add";
+        foreach (string project in projects)
         {
-            processStartInfo.Arguments = $"sln {solutionFile + SolutionExtension} add";
-            foreach (string project in projects)
-            {
-                processStartInfo.Arguments = $"{processStartInfo.Arguments} {project + ProjectExtension}";
-            }
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
+            processStartInfo.Arguments = $"{processStartInfo.Arguments} {project + ProjectExtension}";
         }
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
     }
 
     public void Build()
     {
-        if (HasDotnet())
-        {
-            processStartInfo.Arguments = "build";
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
-        }
+        processStartInfo.Arguments = "build";
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
     }
 
     public void Tests()
     {
-        if (HasDotnet())
-        {
-            processStartInfo.Arguments = "test";
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            _logger.LogInformation("launching unit tests");
-            process.OutputDataReceived += (sender, args) => _logger.LogInformation(args.Data);
-            process.Start();
-            process.BeginOutputReadLine();
-            process.WaitForExit();
-        }
+        processStartInfo.Arguments = "test";
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        _logger.LogInformation("launching unit tests");
+        process.OutputDataReceived += (sender, args) => _logger.LogInformation(args.Data);
+        process.Start();
+        process.BeginOutputReadLine();
+        process.WaitForExit();
     }
 }
