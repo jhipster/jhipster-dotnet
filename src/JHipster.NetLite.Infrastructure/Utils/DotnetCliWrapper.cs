@@ -1,4 +1,5 @@
 ﻿using JHipster.NetLite.Domain.Services.Interfaces;
+using JHipster.NetLite.Infrastructure.Repositories.Exceptions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ public class DotnetCliWrapper
         catch (Exception e)
         {
             _logger.LogError($"Dotnet is not installed : {e.Message}");
-            throw new Exception(e.Message);
+            throw new ExecutableNotFoundException(e.Message);
         }
     }
 

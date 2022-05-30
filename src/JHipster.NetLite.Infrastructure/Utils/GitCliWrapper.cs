@@ -1,4 +1,5 @@
 ﻿using JHipster.NetLite.Domain.Services.Interfaces;
+using JHipster.NetLite.Infrastructure.Repositories.Exceptions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections;
@@ -64,7 +65,7 @@ public class GitCliWrapper
         catch (Exception e)
         {
             _logger.LogError($"Git is not installed : {e.Message}");
-            throw new Exception(e.Message);
+            throw new ExecutableNotFoundException(e.Message);
         }
     }
 
