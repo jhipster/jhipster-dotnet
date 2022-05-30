@@ -45,13 +45,14 @@ jobs:
         dotnet tool install --global coverlet.console    
     - name: Restore dependencies
       run: dotnet restore
+    - name: Verify format
+      run: ./test-integration/scripts/01-verify-format.sh
     - name: Build, Test and Analyze
       env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         ./.sonar/scanner/dotnet-sonarscanner begin /k:"jhipster_jhipster-dotnet" /o:"jhipster" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /s:"`pwd`/SonarQube.Analysis.xml"
-        dotnet format
         dotnet build --no-restore
         dotnet test --no-build --verbosity normal
         dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
