@@ -22,8 +22,8 @@ public static class ServiceCollectionExtensions
                           .AddJHipsterLiteDomainServices()
                           .AddJHipsterLiteRepositories();
 
-        using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder
-            .SetMinimumLevel(LogLevel.Trace)
+        using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder //NOSONAR
+            .SetMinimumLevel(LogLevel.Trace) //NOSONAR
             .AddConsole()); //NOSONAR
 
         ILogger logger = loggerFactory.CreateLogger(JhipsterLite);
