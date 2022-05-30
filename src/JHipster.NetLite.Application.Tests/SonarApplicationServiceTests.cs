@@ -42,10 +42,10 @@ namespace JHipster.NetLite.Application.Tests
         {
             //Arrange
             var project = _fixture.Create<Project>();
-            _sonarDomainService.Setup(m => m.Init(project)).Returns(Task.FromResult(true));
+            _sonarDomainService.Setup(m => m.InitAsync(project)).Returns(Task.FromResult(true));
 
             //Act
-            Func<Task> task = async () => await _sonarApplicationService.Init(project);
+            Func<Task> task = async () => await _sonarApplicationService.InitAsync(project);
 
             //Assert
             await task.Should().NotThrowAsync();

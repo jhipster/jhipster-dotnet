@@ -7,5 +7,5 @@ namespace JHipster.NetLite.Domain.Services.Interfaces;
 
 public interface ISonarDomainService
 {
-    Task Init(Project project);
+    Task InitAsync(Project project);
 }

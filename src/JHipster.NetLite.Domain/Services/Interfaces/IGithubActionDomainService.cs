@@ -7,5 +7,5 @@ namespace JHipster.NetLite.Domain.Services.Interfaces;
 
 public interface IGithubActionDomainService
 {
-    Task Init(Project project);
+    Task InitAsync(Project project);
 }

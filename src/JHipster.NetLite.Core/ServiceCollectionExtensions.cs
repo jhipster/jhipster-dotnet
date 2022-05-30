@@ -1,14 +1,14 @@
 ﻿using JHipster.NetLite.Application.Services;
 using JHipster.NetLite.Application.Services.Interfaces;
+using JHipster.NetLite.Core.Utils;
 using JHipster.NetLite.Domain.Repositories.Interfaces;
 using JHipster.NetLite.Domain.Services;
 using JHipster.NetLite.Domain.Services.Interfaces;
 using JHipster.NetLite.Infrastructure.Repositories;
-using JHipster.NetLite.Web.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace JHipster.NetLite.Web;
+namespace JHipster.NetLite.Core;
 
 public static class ServiceCollectionExtensions
 {
@@ -22,9 +22,9 @@ public static class ServiceCollectionExtensions
                           .AddJHipsterLiteDomainServices()
                           .AddJHipsterLiteRepositories();
 
-        using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder
-            .SetMinimumLevel(LogLevel.Trace)
-            .AddConsole());
+        using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder //NOSONAR
+            .SetMinimumLevel(LogLevel.Trace) //NOSONAR
+            .AddConsole()); //NOSONAR
 
         ILogger logger = loggerFactory.CreateLogger(JhipsterLite);
         LogAssciText(logger);
