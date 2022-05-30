@@ -46,7 +46,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Verify format
-      run: ./test-integration/scripts/01-verify-format.sh
+      run: ../test-integration/scripts/01-verify-format.sh
     - name: Build, Test and Analyze
       env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
