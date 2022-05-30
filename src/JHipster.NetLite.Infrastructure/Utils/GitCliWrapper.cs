@@ -26,7 +26,7 @@ public class GitCliWrapper
 
     private void InitializeProcessStartInfo(string workingDirectory)
     {
-        processStartInfo.FileName = "git";
+        processStartInfo.FileName = "git"; //NOSONAR
         processStartInfo.UseShellExecute = false;
         processStartInfo.RedirectStandardOutput = true;
         processStartInfo.RedirectStandardError = true;

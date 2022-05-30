@@ -29,7 +29,7 @@ public class DotnetCliWrapper
 
     private void InitializeProcessStartInfo(string workingDirectory)
     {
-        processStartInfo.FileName = "dotnet";
+        processStartInfo.FileName = "dotnet"; //NOSONAR
         processStartInfo.UseShellExecute = false;
         processStartInfo.RedirectStandardOutput = true;
         processStartInfo.RedirectStandardError = true;
