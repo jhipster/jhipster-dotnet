@@ -115,13 +115,6 @@ public class ProjectLocalRepository : IProjectRepository
         dotnetCLIWrapper.SlnAdd(solutionFile, projects);
     }
 
-    public void StartUnitsTests(Project project)
-    {
-        var srcFolder = Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..", "..", "..", "..");
-        DotnetCliWrapper dotnetCLIWrapper = new DotnetCliWrapper(srcFolder, _logger);
-        dotnetCLIWrapper.Tests();
-    }
-
     private async Task AssertFileIsGeneratedAsync(string pathFileGenerated, string data)
     {
         string dataFileGenerated;
