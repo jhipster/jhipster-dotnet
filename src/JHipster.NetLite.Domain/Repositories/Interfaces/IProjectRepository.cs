@@ -21,6 +21,4 @@ public interface IProjectRepository
     void GenerateSolution(Project project, string solutionName);
 
     void AddProjectsToSolution(Project project, string solutionFile, params string[] projects);
-
-    void StartUnitsTests(Project project);
 }
