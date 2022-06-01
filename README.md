@@ -1,4 +1,11 @@
 # JHipster Dotnet 🔥
+[![Sonar Cloud Quality Gate][sonar-gate-image]][sonar-url]
+[![Sonar Cloud Reliability Rate][sonar-reliability-image]][sonar-url]
+[![Sonar Cloud Security Rate][sonar-security-image]][sonar-url]
+[![Sonar Cloud Maintainability Rate][sonar-maintainability-image]][sonar-url]
+[![Sonar Cloud Duplicated Code][sonar-duplication-image]][sonar-url]
+
+> JHipster generator
 
 ## Description
 
@@ -51,3 +58,12 @@ Client:
 Continuous Integration:
 
 - GitHub Actions
+
+[sonar-url]: https://sonarcloud.io/dashboard?branch=main&id=jhipster_jhipster-dotnet
+[sonar-coverage-url]: https://sonarcloud.io/component_measures?branch=main&id=jhipster_jhipster-dotnet&metric=coverage&view=list
+[sonar-gate-image]: https://sonarcloud.io/api/project_badges/measure?branch=main&project=jhipster_jhipster-dotnet&metric=alert_status
+[sonar-coverage-image]: https://sonarcloud.io/api/project_badges/measure?branch=main&project=jhipster_jhipster-dotnet&metric=coverage
+[sonar-reliability-image]: https://sonarcloud.io/api/project_badges/measure?branch=main&project=jhipster_jhipster-dotnet&metric=reliability_rating
+[sonar-security-image]: https://sonarcloud.io/api/project_badges/measure?branch=main&project=jhipster_jhipster-dotnet&metric=security_rating
+[sonar-maintainability-image]: https://sonarcloud.io/api/project_badges/measure?branch=main&project=jhipster_jhipster-dotnet&metric=sqale_rating
+[sonar-duplication-image]: https://sonarcloud.io/api/project_badges/measure?branch=main&project=jhipster_jhipster-dotnet&metric=duplicated_lines_density
