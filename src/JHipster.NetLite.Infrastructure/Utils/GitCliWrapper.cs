@@ -81,7 +81,7 @@ public class GitCliWrapper
     public GitCliWrapper Commit(string message)
     {
         Process process = new Process();
-        processStartInfo.Arguments = $"commit -m \"{message}\" --author=\"{GitName} <{GitName}>\"";
+        processStartInfo.Arguments = $"commit -m \"{message}\" --author=\"{GitName} <{GitEmail}>\"";
         process.StartInfo = processStartInfo;
         process.Start();
         process.WaitForExit();
