@@ -17,12 +17,11 @@ public class GitCliWrapper
 
     private readonly ILogger<IInitDomainService> _logger;
 
-    public GitCliWrapper(string workingDirectory, string authorName, string authorEmail, ILogger<IInitDomainService> logger)
+    public GitCliWrapper(string workingDirectory, ILogger<IInitDomainService> logger)
     {
         _logger = logger;
         InitializeProcessStartInfo(workingDirectory);
         HasGit();
-        InitializeGitAuthor(authorName, authorEmail);
     }
 
     private void InitializeProcessStartInfo(string workingDirectory)
@@ -32,23 +31,6 @@ public class GitCliWrapper
         processStartInfo.RedirectStandardOutput = true;
         processStartInfo.RedirectStandardError = true;
         processStartInfo.WorkingDirectory = workingDirectory;
-    }
-
-    private void InitializeGitAuthor(string authorName, string authorEmail)
-    {
-        processStartInfo.Arguments = $"config --global user.email \"{authorEmail}\"";
-
-        Process process1 = new Process();
-        process1.StartInfo = processStartInfo;
-        process1.Start();
-        process1.WaitForExit();
-
-        processStartInfo.Arguments = $"config --global user.name \"{authorName}\"";
-
-        Process process2 = new Process();
-        process2.StartInfo = processStartInfo;
-        process2.Start();
-        process2.WaitForExit();
     }
 
     private void HasGit()
@@ -95,7 +77,7 @@ public class GitCliWrapper
     public GitCliWrapper Commit(string message)
     {
         Process process = new Process();
-        processStartInfo.Arguments = $"commit -m \"{message}\"";
+        processStartInfo.Arguments = $"commit -m \"{message}\" --author=\"JHipster <ugo.vignon@gmail.com>\"";
         process.StartInfo = processStartInfo;
         process.Start();
         process.WaitForExit();
