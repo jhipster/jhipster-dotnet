@@ -2,14 +2,12 @@
 
 public class Project
 {
-    public Project(string folder, string @namespace, string projectName, string sslPort, string gitName, string gitEmail)
+    public Project(string folder, string @namespace, string projectName, string sslPort)
     {
         Folder = folder;
         Namespace = @namespace;
         ProjectName = projectName;
         SslPort = sslPort;
-        GitName = gitName;
-        GitEmail = gitEmail;
     }
 
     public string Folder { get; set; }
@@ -19,8 +17,4 @@ public class Project
     public string ProjectName { get; set; }
 
     public string SslPort { get; set; }
-
-    public string GitName { get; set; }
-
-    public string GitEmail { get; set; }
 }

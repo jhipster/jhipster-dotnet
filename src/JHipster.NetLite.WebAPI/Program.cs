@@ -15,7 +15,15 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
+builder.Services.AddCors(options => //NOSONAR
+{ //NOSONAR
+    options.AddPolicy( //NOSONAR
+        "Open", //NOSONAR
+        builder => builder.AllowAnyOrigin().AllowAnyHeader()); //NOSONAR
+}); //NOSONAR
+
 var app = builder.Build();
+app.UseCors("Open"); //NOSONAR
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
