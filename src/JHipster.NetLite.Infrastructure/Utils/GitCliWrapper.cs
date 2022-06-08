@@ -13,6 +13,10 @@ namespace JHipster.NetLite.Infrastructure.Utils;
 
 public class GitCliWrapper
 {
+    private const string GitName = "JHipster";
+
+    private const string GitEmail = "ugo.vignon@gmail.com";
+
     private readonly ProcessStartInfo processStartInfo = new ProcessStartInfo();
 
     private readonly ILogger<IInitDomainService> _logger;
@@ -77,7 +81,7 @@ public class GitCliWrapper
     public GitCliWrapper Commit(string message)
     {
         Process process = new Process();
-        processStartInfo.Arguments = $"commit -m \"{message}\" --author=\"JHipster <ugo.vignon@gmail.com>\"";
+        processStartInfo.Arguments = $"commit -m \"{message}\" --author=\"{GitName} <{GitName}>\"";
         process.StartInfo = processStartInfo;
         process.Start();
         process.WaitForExit();
