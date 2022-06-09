@@ -1,4 +1,5 @@
 # JHipster Dotnet 🔥
+[![Documentation Status](https://readthedocs.org/projects/jhipster-dotnet/badge/?version=latest)](https://jhipster-dotnet.readthedocs.io/en/latest/?badge=latest)
 [![Sonar Cloud Quality Gate][sonar-gate-image]][sonar-url]
 [![Sonar Cloud Reliability Rate][sonar-reliability-image]][sonar-url]
 [![Sonar Cloud Security Rate][sonar-security-image]][sonar-url]
