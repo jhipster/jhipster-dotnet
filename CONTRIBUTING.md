@@ -170,7 +170,7 @@ Go to the [jhipster-dotnetcore project](https://github.com/nicolas63/jhipster.ne
 
 ### Use a text editor
 
-We recommend you use a text editor like [VSCode](https://code.visualstudio.com/) to code your changes.
+We recommend you use a text editor like [VS2022](https://visualstudio.microsoft.com/fr/vs/) to code your changes.
 
 
 ## <a name="rules"></a> Coding Rules
