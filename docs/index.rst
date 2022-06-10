@@ -20,7 +20,7 @@ You can also find lot of information in https://www.jhipster.tech
   Contribution/helper
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 3
   :hidden:
   :caption: Architecture
 
