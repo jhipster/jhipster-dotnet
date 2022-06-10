@@ -269,6 +269,9 @@ paket-files/
 __pycache__/
 *.pyc
 
+#ReadTheDocs
+docs/_build
+
 # Cake - Uncomment if you are using it
 # tools/
 
