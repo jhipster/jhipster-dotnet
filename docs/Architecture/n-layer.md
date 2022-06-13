@@ -4,7 +4,7 @@ We use the N-Layer application architecture which consists in splitting the appl
 
 ## Explanations of the layers
 
-### Présentation
+### Presentation
 The Presentation layer represents the views of the application.
 
 ### Application
@@ -19,8 +19,8 @@ The DTO layer contains the DTO objects. A DTO object is a data transfer object t
 ### Infrastructure
 The Infrastructure layer is the data access layer. In our case, it is in this layer that we access the templates of our generation.
 
-### Transport
-The role of the Transport layer is to receive requests. In our case, it is in this layer that we have the controllers that receive HTTP requests.
+### Distributed
+The role of the Distributed layer is to receive requests. In our case, it is in this layer that we have the controllers that receive HTTP requests.
 
 First of all, HTTP is a communication protocol between a client and a server. It allows the establishment of a connection between a computer (client) and a server. HTTP defines a set of request methods indicating the action to be performed on a resource. They are called "HTPP verbs".
 
