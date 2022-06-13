@@ -37,9 +37,7 @@ If needed more advanced features, go to https://localhost:7107/swagger/index.htm
    "folder": "C:/Sample",
    "namespace": "sample",
    "projectName": "SampleProject",
-   "sslPort": "12345",
-   "GitName": "Jean.dupont",
-   "GitEmail": "jean.dupont@gmail.com"
+   "sslPort": "12345"
 }
 ```
 <!-- prettier-ignore-end -->
