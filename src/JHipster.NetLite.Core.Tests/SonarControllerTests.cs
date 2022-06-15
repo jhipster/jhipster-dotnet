@@ -5,9 +5,9 @@ using AutoFixture;
 using AutoMapper;
 using FluentAssertions;
 using JHipster.NetLite.Application.Services.Interfaces;
+using JHipster.NetLite.Core.Controllers.Projects;
 using JHipster.NetLite.Domain.Entities;
 using JHipster.NetLite.Dto;
-using JHipster.NetLite.Web.Controllers.Projects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -20,7 +20,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Tests
+namespace JHipster.NetLite.Core.Tests
 {
     [TestClass]
     public class SonarControllerTests
@@ -47,11 +47,11 @@ namespace JHipster.NetLite.Web.Tests
         public async Task Should_ReturnBadRequest_When_Exception()
         {
             //Arrange
-            _sonarApplicationService.Setup(app => app.Init(It.IsAny<Project>()))
+            _sonarApplicationService.Setup(app => app.InitAsync(It.IsAny<Project>()))
                 .Throws(new Exception("test unitaire"));
 
             //Act 
-            var result = await _sonarController.Post(_fixture.Create<ProjectDto>());
+            var result = await _sonarController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert 
             var statusResult = result as BadRequestObjectResult;
@@ -65,7 +65,7 @@ namespace JHipster.NetLite.Web.Tests
             //Arrange
 
             //Act
-            var result = await _sonarController.Post(_fixture.Create<ProjectDto>());
+            var result = await _sonarController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert
             var statusResult = result as OkResult;

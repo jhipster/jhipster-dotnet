@@ -20,8 +20,8 @@ public class SonarApplicationService : ISonarApplicationService
         _logger = logger;
     }
 
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await _sonarDomainService.Init(project);
+        await _sonarDomainService.InitAsync(project);
     }
 }

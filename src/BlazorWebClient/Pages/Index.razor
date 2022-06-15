@@ -37,14 +37,6 @@
                     <label>SslPort : </label>
 		            <InputText id="sslport" @bind-Value="projectForm.SslPort" placeholder="Enter sslport"></InputText>
 	            </div>
-	            <div class="mb-3 d-flex flex-column">
-                    <label>GitName (required) : </label>
-		            <InputText id="gitname" @bind-Value="projectForm.GitName" placeholder="Enter your git name"></InputText>
-	            </div>
-	            <div class="mb-3 d-flex flex-column">
-                    <label>GitEmail (required) : </label>
-		            <InputText id="gitemail" @bind-Value="projectForm.GitEmail" placeholder="Enter your git email"></InputText>
-	            </div>
                 <button id="submitter" class="btn btn-primary">
                     Start
                 </button>
@@ -185,9 +177,7 @@
             projectForm.Folder,
             projectForm.Namespace,
             projectForm.ProjectName,
-            projectForm.SslPort,
-            projectForm.GitName,
-            projectForm.GitEmail
+            projectForm.SslPort
         );
 
         await initService.Post(projectDto);

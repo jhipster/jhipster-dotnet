@@ -7,5 +7,5 @@ namespace JHipster.NetLite.Application.Services.Interfaces;
 
 public interface ISonarApplicationService
 {
-    Task Init(Project project);
+    Task InitAsync(Project project);
 }

@@ -5,9 +5,10 @@ using AutoFixture;
 using AutoMapper;
 using FluentAssertions;
 using JHipster.NetLite.Application.Services.Interfaces;
+using JHipster.NetLite.Core.Controllers.Projects;
+using JHipster.NetLite.Core.Controllers.Projects.CI;
 using JHipster.NetLite.Domain.Entities;
 using JHipster.NetLite.Dto;
-using JHipster.NetLite.Web.Controllers.Projects.Clients;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -20,38 +21,38 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Tests
+namespace JHipster.NetLite.Core.Tests
 {
     [TestClass]
-    public class BlazorControllerTests
+    public class GithubActionControllerTests
     {
-        private BlazorController _blazorController;
+        private GithubActionController _githubActionController;
 
-        private Mock<IBlazorApplicationService> _blazorApplicationService;
+        private Mock<IGithubActionApplicationService> _githubActionApplicationService;
 
         private Fixture _fixture = new Fixture();
 
         private IMapper _mapper;
 
-        private ILogger<BlazorController> _logger = new NullLogger<BlazorController>();
+        private ILogger<GithubActionController> _logger = new NullLogger<GithubActionController>();
 
-        public BlazorControllerTests()
+        public GithubActionControllerTests()
         {
-            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(BlazorController)));
+            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(ApiController)));
             _mapper = new Mapper(configuration);
-            _blazorApplicationService = new Mock<IBlazorApplicationService>();
-            _blazorController = new BlazorController(_logger, _blazorApplicationService.Object, _mapper);
+            _githubActionApplicationService = new Mock<IGithubActionApplicationService>();
+            _githubActionController = new GithubActionController(_logger, _githubActionApplicationService.Object, _mapper);
         }
 
         [TestMethod]
         public async Task Should_ReturnBadRequest_When_Exception()
         {
             //Arrange
-            _blazorApplicationService.Setup(app => app.Init(It.IsAny<Project>()))
+            _githubActionApplicationService.Setup(app => app.InitAsync(It.IsAny<Project>()))
                 .Throws(new Exception("test unitaire"));
 
             //Act 
-            var result = await _blazorController.Post(_fixture.Create<ProjectDto>());
+            var result = await _githubActionController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert 
             var statusResult = result as BadRequestObjectResult;
@@ -65,7 +66,7 @@ namespace JHipster.NetLite.Web.Tests
             //Arrange
 
             //Act
-            var result = await _blazorController.Post(_fixture.Create<ProjectDto>());
+            var result = await _githubActionController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert
             var statusResult = result as OkResult;

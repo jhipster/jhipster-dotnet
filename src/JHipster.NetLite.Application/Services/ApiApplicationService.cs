@@ -16,8 +16,8 @@ public class ApiApplicationService : IApiApplicationService
         _apiDomainService = apiDomainService;
         _logger = logger;
     }
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await _apiDomainService.Init(project);
+        await _apiDomainService.InitAsync(project);
     }
 }

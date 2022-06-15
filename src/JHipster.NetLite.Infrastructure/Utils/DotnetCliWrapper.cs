@@ -1,12 +1,7 @@
 ﻿using JHipster.NetLite.Domain.Services.Interfaces;
+using JHipster.NetLite.Infrastructure.Repositories.Exceptions;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JHipster.NetLite.Infrastructure.Utils;
 
@@ -24,18 +19,19 @@ public class DotnetCliWrapper
     {
         _logger = logger;
         InitializeProcessStartInfo(workingDirectory);
+        HasDotnet();
     }
 
     private void InitializeProcessStartInfo(string workingDirectory)
     {
-        processStartInfo.FileName = "dotnet";
+        processStartInfo.FileName = "dotnet"; //NOSONAR
         processStartInfo.UseShellExecute = false;
         processStartInfo.RedirectStandardOutput = true;
         processStartInfo.RedirectStandardError = true;
         processStartInfo.WorkingDirectory = workingDirectory;
     }
 
-    private bool HasDotnet()
+    private void HasDotnet()
     {
         try
         {
@@ -46,74 +42,61 @@ public class DotnetCliWrapper
             process.Start();
             process.WaitForExit();
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _logger.LogError("Dotnet is not installed");
-            return false;
+            _logger.LogError($"Dotnet is not installed : {e.Message}");
+            throw new ExecutableNotFoundException(e.Message);
         }
-        return true;
     }
 
     public void NewSln(string solutionName, bool force)
     {
-        if (HasDotnet())
+        if (force)
         {
-            if (force)
-            {
-                processStartInfo.Arguments = $"new sln --name {solutionName} --force";
-            }
-            else
-            {
-                processStartInfo.Arguments = $"new sln --name {solutionName}";
-            }
-
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
+            processStartInfo.Arguments = $"new sln --name {solutionName} --force";
         }
+        else
+        {
+            processStartInfo.Arguments = $"new sln --name {solutionName}";
+        }
+
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
     }
 
     public void SlnAdd(string solutionFile, params string[] projects)
     {
-        if (HasDotnet())
+        processStartInfo.Arguments = $"sln {solutionFile + SolutionExtension} add";
+        foreach (string project in projects)
         {
-            processStartInfo.Arguments = $"sln {solutionFile + SolutionExtension} add";
-            foreach (string project in projects)
-            {
-                processStartInfo.Arguments = $"{processStartInfo.Arguments} {project + ProjectExtension}";
-            }
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
+            processStartInfo.Arguments = $"{processStartInfo.Arguments} {project + ProjectExtension}";
         }
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
     }
 
     public void Build()
     {
-        if (HasDotnet())
-        {
-            processStartInfo.Arguments = "build";
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            process.WaitForExit();
-        }
+        processStartInfo.Arguments = "build";
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        process.Start();
+        process.WaitForExit();
     }
 
     public void Tests()
     {
-        if (HasDotnet())
-        {
-            processStartInfo.Arguments = "test";
-            Process process = new Process();
-            process.StartInfo = processStartInfo;
-            _logger.LogInformation("launching unit tests");
-            process.OutputDataReceived += (sender, args) => _logger.LogInformation(args.Data);
-            process.Start();
-            process.BeginOutputReadLine();
-            process.WaitForExit();
-        }
+        processStartInfo.Arguments = "test";
+        Process process = new Process();
+        process.StartInfo = processStartInfo;
+        _logger.LogInformation("launching unit tests");
+        process.OutputDataReceived += (sender, args) => _logger.LogInformation(args.Data);
+        process.Start();
+        process.BeginOutputReadLine();
+        process.WaitForExit();
     }
 }

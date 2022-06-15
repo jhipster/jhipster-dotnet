@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Controllers.Projects;
+namespace JHipster.NetLite.Core.Controllers.Projects;
 
 [ApiController]
 [Route("[controller]")]
@@ -32,7 +32,7 @@ public class ApiController : ControllerBase
     /// <summary>
     /// Generating the web api project
     /// </summary>
-    /// <param name="folder"></param>
+    /// <param name="projectDto"></param>
     /// <returns></returns>
     /// <remarks>
     /// Sample request:
@@ -41,20 +41,18 @@ public class ApiController : ControllerBase
     ///        "folder": "C:/Sample",
     ///        "namespace": "sample",
     ///        "projectName": "SampleProject",
-    ///        "sslPort": "12345",
-    ///        "GitName": "Jean.Dupont",
-    ///        "GitEmail": "jean.dupont@gmail.com"
+    ///        "sslPort": "12345"
     ///     }
     ///
     /// </remarks>
     [HttpPost]
     [Route("/api/projects/api")]
-    public async Task<IActionResult> Post(ProjectDto projectDto)
+    public async Task<IActionResult> PostAsync(ProjectDto projectDto)
     {
         try
         {
             var project = _mapper.Map<Project>(projectDto);
-            await _apiApplicationService.Init(project);
+            await _apiApplicationService.InitAsync(project);
 
             _logger.LogInformation("Request succes");
             return Ok();

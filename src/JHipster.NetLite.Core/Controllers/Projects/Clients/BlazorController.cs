@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Controllers.Projects.Clients;
+namespace JHipster.NetLite.Core.Controllers.Projects.Clients;
 
 [ApiController]
 [Route("[controller]")]
@@ -32,7 +32,7 @@ public class BlazorController : ControllerBase
     /// <summary>
     /// Generating the Blazor web client
     /// </summary>
-    /// <param name="folder"></param>
+    /// <param name="projectDto"></param>
     /// <returns></returns>
     /// <remarks>
     /// Sample request:
@@ -41,20 +41,18 @@ public class BlazorController : ControllerBase
     ///        "folder": "C:/Sample",
     ///        "namespace": "sample",
     ///        "projectName": "SampleProject",
-    ///        "sslPort": "12345",
-    ///        "GitName": "Jean.Dupont",
-    ///        "GitEmail": "jean.dupont@gmail.com"
+    ///        "sslPort": "12345"
     ///     }
     ///
     /// </remarks>
     [HttpPost]
     [Route("/api/projects/clients/Blazor")]
-    public async Task<IActionResult> Post(ProjectDto projectDto)
+    public async Task<IActionResult> PostAsync(ProjectDto projectDto)
     {
         try
         {
             var project = _mapper.Map<Project>(projectDto);
-            await _blazorApplicationService.Init(project);
+            await _blazorApplicationService.InitAsync(project);
 
             _logger.LogInformation("Request succes");
             return Ok();

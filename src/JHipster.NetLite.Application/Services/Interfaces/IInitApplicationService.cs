@@ -4,6 +4,6 @@ namespace JHipster.NetLite.Application.Services.Interfaces;
 
 public interface IInitApplicationService
 {
-    Task Init(Project project);
+    Task InitAsync(Project project);
 }
 

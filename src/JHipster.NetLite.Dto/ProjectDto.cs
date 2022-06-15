@@ -8,7 +8,7 @@ public class ProjectDto
 
     private const string DefaultSslPort = "12345";
 
-    public ProjectDto(string folder, string @namespace, string projectName, string sslPort, string gitName, string gitEmail)
+    public ProjectDto(string folder, string @namespace, string projectName, string sslPort)
     {
         Folder = folder;
 
@@ -38,9 +38,6 @@ public class ProjectDto
         {
             SslPort = sslPort;
         }
-
-        GitName = gitName;
-        GitEmail = gitEmail;
     }
 
     public string Folder { get; set; }
@@ -50,8 +47,4 @@ public class ProjectDto
     public string ProjectName { get; set; }
 
     public string SslPort { get; set; }
-
-    public string GitName { get; set; }
-
-    public string GitEmail { get; set; }
 }

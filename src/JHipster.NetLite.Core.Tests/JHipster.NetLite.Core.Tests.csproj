@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JHipster.NetLite.Core\JHipster.NetLite.Web.csproj" />
+    <ProjectReference Include="..\JHipster.NetLite.Core\JHipster.NetLite.Core.csproj" />
     <ProjectReference Include="..\JHipster.NetLite.Domain\JHipster.NetLite.Domain.csproj" />
   </ItemGroup>
 

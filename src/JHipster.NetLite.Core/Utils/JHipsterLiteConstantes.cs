@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Utils;
+namespace JHipster.NetLite.Core.Utils;
 
 public static class JHipsterLiteConstantes
 {

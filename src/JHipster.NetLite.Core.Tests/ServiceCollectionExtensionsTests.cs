@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Tests
+namespace JHipster.NetLite.Core.Tests
 {
     [TestClass]
     public class ServiceCollectionExtensionsTests

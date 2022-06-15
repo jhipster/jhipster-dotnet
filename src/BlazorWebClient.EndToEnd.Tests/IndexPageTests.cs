@@ -10,11 +10,7 @@ namespace BlazorWebClient.EndToEnd.Tests
     [TestClass]
     public class IndexPageTests
     {
-        private const string PathApplication = "http://localhost:5230/";
-
-        private const string GitNameTestMessage = "jean";
-
-        private const string GitEmailTestMessage = "dupont";
+        private const string PathApplication = "https://localhost:7050";
 
         private const float GenerationWaitTime = 5000f;
 
@@ -30,8 +26,7 @@ namespace BlazorWebClient.EndToEnd.Tests
         {
             //Arrange
             using var playwright = await Playwright.CreateAsync();
-            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true,
-             Channel = "chrome"});
+            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
             var page = await browser.NewPageAsync();
             await page.GotoAsync(PathApplication);
             await page.ClickAsync("#submitter");
@@ -48,16 +43,15 @@ namespace BlazorWebClient.EndToEnd.Tests
         {
             //Arrange
             using var playwright = await Playwright.CreateAsync();
-            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
             var page = await browser.NewPageAsync();
             await page.GotoAsync(PathApplication);
 
             //Act
             await page.TypeAsync("#folder", _generationFolderTestMessage, new PageTypeOptions { Delay = 50 });
-            await page.TypeAsync("#gitname", GitNameTestMessage, new PageTypeOptions { Delay = 50 });
-            await page.TypeAsync("#gitemail", GitEmailTestMessage, new PageTypeOptions { Delay = 50 });
             await page.ClickAsync("#submitter");
             await page.WaitForTimeoutAsync(GenerationWaitTime);
+
             //Assert
             new DirectoryInfo(_generationFolderTestMessage).GetFiles().Length.Should().BeGreaterThan(0);
 

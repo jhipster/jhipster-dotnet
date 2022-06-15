@@ -21,8 +21,8 @@ public class BlazorApplicationService : IBlazorApplicationService
         _blazorDomainService = blazorDomainService;
         _logger = logger;
     }
-    public async Task Init(Project project)
+    public async Task InitAsync(Project project)
     {
-        await _blazorDomainService.Init(project);
+        await _blazorDomainService.InitAsync(project);
     }
 }

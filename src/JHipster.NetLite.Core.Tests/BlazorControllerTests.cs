@@ -1,51 +1,57 @@
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this
+
 using AutoFixture;
 using AutoMapper;
 using FluentAssertions;
 using JHipster.NetLite.Application.Services.Interfaces;
+using JHipster.NetLite.Core.Controllers.Projects.Clients;
 using JHipster.NetLite.Domain.Entities;
 using JHipster.NetLite.Dto;
-using JHipster.NetLite.Web.Controllers.Projects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace JHipster.NetLite.Web.Tests
+namespace JHipster.NetLite.Core.Tests
 {
     [TestClass]
-    public class InitControllerTests
+    public class BlazorControllerTests
     {
-        private InitController _initController;
+        private BlazorController _blazorController;
 
-        private Mock<IInitApplicationService> _initApplicationService;
+        private Mock<IBlazorApplicationService> _blazorApplicationService;
 
         private Fixture _fixture = new Fixture();
 
         private IMapper _mapper;
 
-        private ILogger<InitController> _logger = new NullLogger<InitController>();
+        private ILogger<BlazorController> _logger = new NullLogger<BlazorController>();
 
-        public InitControllerTests()
+        public BlazorControllerTests()
         {
-            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(InitController)));
+            var configuration = new MapperConfiguration(cfg => cfg.AddMaps(typeof(BlazorController)));
             _mapper = new Mapper(configuration);
-            _initApplicationService = new Mock<IInitApplicationService>();
-            _initController = new InitController(_logger, _initApplicationService.Object, _mapper);
+            _blazorApplicationService = new Mock<IBlazorApplicationService>();
+            _blazorController = new BlazorController(_logger, _blazorApplicationService.Object, _mapper);
         }
 
         [TestMethod]
         public async Task Should_ReturnBadRequest_When_Exception()
         {
             //Arrange
-            _initApplicationService.Setup(app => app.Init(It.IsAny<Project>()))
+            _blazorApplicationService.Setup(app => app.InitAsync(It.IsAny<Project>()))
                 .Throws(new Exception("test unitaire"));
 
             //Act 
-            var result = await _initController.Post(new ProjectDto("", "", "", "", "", ""));
+            var result = await _blazorController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert 
             var statusResult = result as BadRequestObjectResult;
@@ -59,7 +65,7 @@ namespace JHipster.NetLite.Web.Tests
             //Arrange
 
             //Act
-            var result = await _initController.Post(_fixture.Create<ProjectDto>());
+            var result = await _blazorController.PostAsync(_fixture.Create<ProjectDto>());
 
             //Assert
             var statusResult = result as OkResult;

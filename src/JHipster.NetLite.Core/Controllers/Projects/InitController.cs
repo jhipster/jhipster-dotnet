@@ -5,7 +5,7 @@ using JHipster.NetLite.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace JHipster.NetLite.Web.Controllers.Projects;
+namespace JHipster.NetLite.Core.Controllers.Projects;
 
 [ApiController]
 [Route("[controller]")]
@@ -27,7 +27,7 @@ public class InitController : ControllerBase
     /// <summary>
     /// Generating the Readme file, initializes the project solution and Git
     /// </summary>
-    /// <param name="folder"></param>
+    /// <param name="projectDto"></param>
     /// <returns></returns>
     /// <remarks>
     /// Sample request:
@@ -36,20 +36,18 @@ public class InitController : ControllerBase
     ///        "folder": "C:/Sample",
     ///        "namespace": "sample",
     ///        "projectName": "SampleProject",
-    ///        "sslPort": "12345",
-    ///        "GitName": "Jean.Dupont",
-    ///        "GitEmail": "jean.dupont@gmail.com"
+    ///        "sslPort": "12345"
     ///     }
     ///
     /// </remarks>
     [HttpPost]
     [Route("/api/projects/init")]
-    public async Task<IActionResult> Post(ProjectDto projectDto)
+    public async Task<IActionResult> PostAsync(ProjectDto projectDto)
     {
         try
         {
             var project = _mapper.Map<Project>(projectDto);
-            await _initApplicationService.Init(project);
+            await _initApplicationService.InitAsync(project);
 
             _logger.LogInformation("Request succes");
             return Ok();

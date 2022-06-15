@@ -1,5 +1,5 @@
-﻿using JHipster.NetLite.Web;
-using JHipster.NetLite.Web.Utils;
+﻿using JHipster.NetLite.Core;
+using JHipster.NetLite.Core.Utils;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,15 +14,16 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{JHipsterLiteConstantes.JHipsterLiteAssembly}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(
-        "Open",
-        builder => builder.AllowAnyOrigin().AllowAnyHeader());
-});
+
+builder.Services.AddCors(options => //NOSONAR
+{ //NOSONAR
+    options.AddPolicy( //NOSONAR
+        "Open", //NOSONAR
+        builder => builder.AllowAnyOrigin().AllowAnyHeader()); //NOSONAR
+}); //NOSONAR
 
 var app = builder.Build();
-app.UseCors("Open");
+app.UseCors("Open"); //NOSONAR
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

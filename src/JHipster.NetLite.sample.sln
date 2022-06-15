@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Web", "JHipster.NetLite.Core\JHipster.NetLite.Web.csproj", "{47D4CC95-5B2F-490F-BE03-ABE5FB753412}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.WebAPI", "JHipster.NetLite.WebAPI\JHipster.NetLite.WebAPI.csproj", "{A0B1C214-AC14-4089-8EE5-FF3E79FFC332}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Application", "JHipster.NetLite.Application\JHipster.NetLite.Application.csproj", "{F63C568A-AB92-4514-B576-BAD9568B237A}"
@@ -23,15 +21,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Domain.Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Infrastructure.Tests", "JHipster.NetLite.Infrastructure.Tests\JHipster.NetLite.Infrastructure.Tests.csproj", "{573CAEE9-43EC-4FCA-A0B5-6ED26EADB9E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Web.Tests", "JHipster.NetLite.Web.Tests\JHipster.NetLite.Web.Tests.csproj", "{CC7BDD36-482B-4C1A-8DAC-B7889D0F83A6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebClient.Tests", "BlazorWebClient.Tests\BlazorWebClient.Tests.csproj", "{4974E0AD-84DF-4685-BBE8-D499AA1ED6CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebClient.EndToEnd.Tests", "BlazorWebClient.EndToEnd.Tests\BlazorWebClient.EndToEnd.Tests.csproj", "{7AC6CB20-8216-43E6-AC34-788F521819A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Dto", "JHipster.NetLite.Dto\JHipster.NetLite.Dto.csproj", "{387622D5-2F67-4FBD-B570-5D40150A5263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebClient", "BlazorWebClient\BlazorWebClient.csproj", "{B3FADDBA-E0BA-4D13-ABFA-C73453BB010D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebClient", "BlazorWebClient\BlazorWebClient.csproj", "{B3FADDBA-E0BA-4D13-ABFA-C73453BB010D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Core", "JHipster.NetLite.Core\JHipster.NetLite.Core.csproj", "{9AF8D03A-CA51-4DF3-8B1A-3DB600ABC51D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JHipster.NetLite.Core.Tests", "JHipster.NetLite.Core.Tests\JHipster.NetLite.Core.Tests.csproj", "{661EEFBE-E2AD-4D2C-A742-0345C93D1889}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47D4CC95-5B2F-490F-BE03-ABE5FB753412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47D4CC95-5B2F-490F-BE03-ABE5FB753412}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47D4CC95-5B2F-490F-BE03-ABE5FB753412}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47D4CC95-5B2F-490F-BE03-ABE5FB753412}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0B1C214-AC14-4089-8EE5-FF3E79FFC332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0B1C214-AC14-4089-8EE5-FF3E79FFC332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0B1C214-AC14-4089-8EE5-FF3E79FFC332}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,10 +71,6 @@ Global
 		{573CAEE9-43EC-4FCA-A0B5-6ED26EADB9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{573CAEE9-43EC-4FCA-A0B5-6ED26EADB9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{573CAEE9-43EC-4FCA-A0B5-6ED26EADB9E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC7BDD36-482B-4C1A-8DAC-B7889D0F83A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC7BDD36-482B-4C1A-8DAC-B7889D0F83A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC7BDD36-482B-4C1A-8DAC-B7889D0F83A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC7BDD36-482B-4C1A-8DAC-B7889D0F83A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4974E0AD-84DF-4685-BBE8-D499AA1ED6CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4974E0AD-84DF-4685-BBE8-D499AA1ED6CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4974E0AD-84DF-4685-BBE8-D499AA1ED6CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -95,6 +87,14 @@ Global
 		{B3FADDBA-E0BA-4D13-ABFA-C73453BB010D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3FADDBA-E0BA-4D13-ABFA-C73453BB010D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3FADDBA-E0BA-4D13-ABFA-C73453BB010D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AF8D03A-CA51-4DF3-8B1A-3DB600ABC51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF8D03A-CA51-4DF3-8B1A-3DB600ABC51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF8D03A-CA51-4DF3-8B1A-3DB600ABC51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF8D03A-CA51-4DF3-8B1A-3DB600ABC51D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{661EEFBE-E2AD-4D2C-A742-0345C93D1889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{661EEFBE-E2AD-4D2C-A742-0345C93D1889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{661EEFBE-E2AD-4D2C-A742-0345C93D1889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{661EEFBE-E2AD-4D2C-A742-0345C93D1889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,7 +103,6 @@ Global
 		{AB6CE943-AB3C-4A08-B080-ACCA362DBA08} = {75216B45-F196-48E7-B102-17CD5FE4F8E4}
 		{7EC59C14-92B3-4C6B-97D7-1A11A92673F0} = {75216B45-F196-48E7-B102-17CD5FE4F8E4}
 		{573CAEE9-43EC-4FCA-A0B5-6ED26EADB9E0} = {75216B45-F196-48E7-B102-17CD5FE4F8E4}
-		{CC7BDD36-482B-4C1A-8DAC-B7889D0F83A6} = {75216B45-F196-48E7-B102-17CD5FE4F8E4}
 		{4974E0AD-84DF-4685-BBE8-D499AA1ED6CB} = {75216B45-F196-48E7-B102-17CD5FE4F8E4}
 		{7AC6CB20-8216-43E6-AC34-788F521819A7} = {75216B45-F196-48E7-B102-17CD5FE4F8E4}
 	EndGlobalSection
